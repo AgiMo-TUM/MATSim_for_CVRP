@@ -1,5 +1,8 @@
 *.class
 
+# Big files
+*.pkl.gz
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
