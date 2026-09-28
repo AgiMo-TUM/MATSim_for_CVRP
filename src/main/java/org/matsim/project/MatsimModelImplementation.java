@@ -24,6 +24,11 @@ import org.matsim.application.MATSimApplication;
 import org.matsim.core.config.Config;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
+import org.matsim.project.businessModels.CVRP;
+import org.matsim.project.parser.JSONParser;
+
+import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * @author nagel
@@ -37,7 +42,18 @@ public class MatsimModelImplementation extends MATSimApplication {
 	}
 
 	public static void main(String[] args) {
+		writeScenarioXML();
 		MATSimApplication.execute(MatsimModelImplementation.class, "--config", "scenarios/equil/config-2026.xml");
+	}
+
+	protected static void writeScenarioXML() {
+		Path path = Path.of("/Users/benkostka/IdeaProjects/MATSim_for_CVRP/original-input-data/cvrp-instances/sample_30_3.json");
+		try {
+			JSONParser jsonParser = new JSONParser(path);
+			CVRP crvp = jsonParser.getCVRPInstance();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
@@ -49,7 +65,8 @@ public class MatsimModelImplementation extends MATSimApplication {
 
 		// ---
 
-		return config;
+
+        return config;
 	}
 
 	@Override

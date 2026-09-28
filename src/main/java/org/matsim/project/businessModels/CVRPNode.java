@@ -10,6 +10,6 @@ import lombok.*;
 public class CVRPNode {
     private long nodeID;
     private int demand;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 }

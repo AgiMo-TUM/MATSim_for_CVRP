@@ -14,11 +14,7 @@ import java.util.Dictionary;
 @AllArgsConstructor
 public class CVRP {
     private ArrayList<CVRPNode> nodes;
-    private ArrayList<ArrayList<Integer>> arc_index;
+    private ArrayList<CVRPArc> arcs;
     private int vehicleCapacity;
-    private int arcCost;
     private int nbVehicle;
-    private ArrayList<Dictionary<Tuple, Boolean>> solution;
-
-
 }
