@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<carriers xmlns="http://www.matsim.org/files/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.matsim.org/files/dtd http://www.matsim.org/files/dtd/carriersDefinitions_v2.1.xsd">
+	<carrier id="cvrp_carrier">
+		<attributes>
+			<attribute name="jspritIterations" class="java.lang.Integer">50</attribute>
+		</attributes>
+		<capabilities fleetSize="FINITE">
+			<vehicles>
+				<vehicle id="vehicle_0" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_1" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_2" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_3" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_4" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_5" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_6" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_7" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_8" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+				<vehicle id="vehicle_9" depotLinkId="svc_0" typeId="cvrp_truck" earliestStart="00:00:00" latestEnd="24:00:00"/>
+			</vehicles>
+		</capabilities>
+		<services>
+			<service id="service_1" to="svc_1" capacityDemand="6" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_2" to="svc_2" capacityDemand="6" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_3" to="svc_3" capacityDemand="4" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_4" to="svc_4" capacityDemand="5" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_5" to="svc_5" capacityDemand="10" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_6" to="svc_6" capacityDemand="6" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_7" to="svc_7" capacityDemand="1" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_8" to="svc_8" capacityDemand="7" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_9" to="svc_9" capacityDemand="6" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_10" to="svc_10" capacityDemand="3" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_11" to="svc_11" capacityDemand="1" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_12" to="svc_12" capacityDemand="1" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_13" to="svc_13" capacityDemand="9" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_14" to="svc_14" capacityDemand="9" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_15" to="svc_15" capacityDemand="2" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_16" to="svc_16" capacityDemand="2" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_17" to="svc_17" capacityDemand="2" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_18" to="svc_18" capacityDemand="5" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_19" to="svc_19" capacityDemand="1" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_20" to="svc_20" capacityDemand="10" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_21" to="svc_21" capacityDemand="9" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_22" to="svc_22" capacityDemand="1" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_23" to="svc_23" capacityDemand="1" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_24" to="svc_24" capacityDemand="3" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_25" to="svc_25" capacityDemand="5" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_26" to="svc_26" capacityDemand="4" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_27" to="svc_27" capacityDemand="3" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_28" to="svc_28" capacityDemand="5" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_29" to="svc_29" capacityDemand="1" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+			<service id="service_30" to="svc_30" capacityDemand="9" earliestStart="00:00:00" latestEnd="596523:14:07" serviceDuration="00:05:00"/>
+		</services>
+		<plans>
+			<plan selected="true">
+				<tour tourId="tour_0" vehicleId="vehicle_0">
+					<act type="start" end_time="00:00:00"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_1"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_21"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_3"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_2"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_10"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_22"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_25"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_19"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_5"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_24"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_16"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_4"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_30"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="end"/>
+				</tour>
+				<tour tourId="tour_1" vehicleId="vehicle_1">
+					<act type="start" end_time="00:00:00"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_14"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_11"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_12"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_17"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_13"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_28"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_8"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_29"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_20"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_18"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_27"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_15"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_7"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_9"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_6"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_23"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="service" serviceId="service_26"/>
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					</leg>
+					<act type="end"/>
+				</tour>
+			</plan>
+		</plans>
+	</carrier>
+</carriers>

@@ -1,77 +1,162 @@
-# matsim-example-project
+# MATSim for CVRP (Capacitated Vehicle Routing Problem)
 
-A small example of how to use MATSim as a library.
+This project integrates **CVRP instances** into the agent-based transport simulation **MATSim** using the **Freight Extension** (`matsim-contrib-freight`) and the integrated VRP solver **jsprit**.
 
-By default, this project uses the latest (pre-)release. In order to use a different version, edit `pom.xml`.
+It allows automatically reading CVRP problem instances and solutions in JSON format (`original-input-data/cvrp-instances`), converting them into complete MATSim scenarios (`scenarios/cvrp`), and running microscopic simulations of freight movements on the road network.
 
-[//]: # (A recommended directory structure is as follows:)
+---
 
-[//]: # (* `src` for sources)
+## Table of Contents
+- [Overview & Workflow](#overview--workflow)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Running the Freight Simulation](#running-the-freight-simulation)
+  - [Mode 1: Solve VRP with jsprit & Simulate (Default)](#mode-1-solve-vrp-with-jsprit--simulate-default)
+  - [Mode 2: Simulate Pre-computed Solution from JSON](#mode-2-simulate-pre-computed-solution-from-json)
+- [Outputs and Analysis](#outputs-and-analysis)
+- [Development in the IDE](#development-in-the-ide)
+- [License](#license)
 
-[//]: # (* `original-input-data` for original input data &#40;typically not in MATSim format&#41;)
+---
 
-[//]: # (* `scenarios` for MATSim scenarios, i.e. MATSim input and output data.  A good way is the following:)
+## Overview & Workflow
 
-[//]: # (  * One subdirectory for each scenario, e.g. `scenarios/mySpecialScenario01`.)
+The toolchain follows this workflow:
 
-[//]: # (  * This minimally contains a config file, a network file, and a population file.)
-
-[//]: # (  * Output goes one level down, e.g. `scenarios/mySpecialScenario01/output-from-a-good-run/...`.)
-  
-  
-### Import into eclipse
-
-1. download a modern version of eclipse. This should have maven and git included by default.
-1. `file->import->git->projects from git->clone URI` and clone as specified above.  _It will go through a 
-sequence of windows; it is important that you import as 'general project'._
-1. `file->import->maven->existing maven projects`
-
-Sometimes, step 3 does not work, in particular after previously failed attempts.  Sometimes, it is possible to
-right-click to `configure->convert to maven project`.  If that fails, the best thing seems to remove all 
-pieces of the failed attempt in the directory and start over.
-
-### Import into IntelliJ
-
-`File -> New -> Project from Version Control` paste the repository url and hit 'clone'. IntelliJ usually figures out
-that the project is a maven project. If not: `Right click on pom.xml -> import as maven project`.
-
-### Java Version
-
-The project uses Java 25. Usually a suitable SDK is packaged within IntelliJ or Eclipse. Otherwise, one must install a
-suitable sdk manually, which is available [here](https://openjdk.java.net/)
-
-### Building and Running it locally
-
-You can build an executable jar-file by executing the following command:
-
-```sh
-./mvnw clean package
+```mermaid
+flowchart TD
+    JSON["sample_30_3.json\n(Depot, Customers, Demands, Arcs)"] --> Parser["JSONParser"]
+    Parser --> Model["CVRP / CVRPNode / CVRPArc"]
+    
+    Model --> NetGen["CVRPNetworkGenerator"]
+    Model --> VehGen["CVRPVehicleTypeGenerator"]
+    Model --> CarGen["CVRPCarrierGenerator"]
+    
+    NetGen --> NetFile["scenarios/cvrp/network.xml"]
+    VehGen --> VehFile["scenarios/cvrp/vehicleTypes.xml"]
+    CarGen --> CarFile["scenarios/cvrp/carriers.xml"]
+    
+    NetFile & VehFile & CarFile --> Sim{"Mode Selection"}
+    
+    Sim -->|Default| Jsprit["jsprit Solver\n(Optimizes Tours)"]
+    Sim -->|--use-solution| PrePlan["CVRPSolutionToTourPlan\n(Uses active arcs from JSON)"]
+    
+    Jsprit --> MATSim["MATSim Controler + CarrierModule\n(Traffic Simulation)"]
+    PrePlan --> MATSim
+    
+    MATSim --> Output["output/cvrp/\n(Events, Plans, KPIs, TSV Reports)"]
 ```
 
-or on Windows:
+1. **Parser**: Reads nodes (depot + customers with demands), arcs with costs, and vehicle capacities from a CVRP JSON file (e.g. `original-input-data/cvrp-instances/sample_30_3.json`).
+2. **Network Generator**: Converts coordinates into MATSim nodes and links with euclidean distances, creating auxiliary service links for loading and unloading operations.
+3. **Vehicle Type & Carrier**: Defines truck vehicle types with capacity constraints and carriers with services (customer orders at their delivery locations).
+4. **Tour Planning & Simulation**:
+   - Either jsprit solves the Vehicle Routing Problem autonomously,
+   - or a pre-computed solution (`solution`) present in the JSON is reconstructed as a tour plan.
+5. **Mobsim**: MATSim simulates the trucks on the road network, modeling travel times, waiting times, and unloading activities.
 
-```sh
-mvnw.cmd clean package
+---
+
+## Project Structure
+
+```
+src/main/java/org/matsim/project/
+├── businessModels/             # CVRP data models
+│   ├── CVRP.java               # Overall instance (nodes, arcs, capacity, fleet size)
+│   ├── CVRPNode.java           # Node (ID, coordinates x/y, demand)
+│   └── CVRPArc.java            # Arcs (source, destination, cost, active in solution)
+├── parser/
+│   └── JSONParser.java         # Parser for CVRP JSON files
+├── converter/                  # MATSim converters
+│   ├── CVRPNetworkGenerator.java     # Generates MATSim network.xml + service links
+│   ├── CVRPVehicleTypeGenerator.java # Generates vehicleTypes.xml with capacities & costs
+│   ├── CVRPCarrierGenerator.java     # Generates carriers.xml with services & fleet
+│   └── CVRPSolutionToTourPlan.java   # Converts JSON solution vectors into tour plans
+├── RunCVRPFreightSimulation.java     # Main class & entry point for the simulation
+├── MatsimModelImplementation.java    # MATSimApplication baseline example
+└── RunMatsimModelImplementation.java # Runner for the MATSimApplication scenario
+
+original-input-data/cvrp-instances/
+└── sample_30_3.json            # Sample CVRP instance (30 customers, 1 depot)
+
+scenarios/cvrp/
+├── config.xml                  # MATSim configuration file for freight
+├── network.xml                 # Generated road network
+├── vehicleTypes.xml            # Generated vehicle types
+├── carriers.xml                # Generated freight carriers & services
+└── planned_carriers.xml        # Tour plans computed by jsprit
 ```
 
-This will download all necessary dependencies (it might take a while the first time it is run) and create a file `matsim-example-project-0.0.1-SNAPSHOT.jar` in the top directory.
-This jar-file can be executed with Java on the command line. You need to pass a command to the jar file.
-To simply run MATSim based on a config file, pass `run --config <path>`. To get the GUI, pass `gui`. For more options, pass `help`.
+---
 
-```sh
-java -jar matsim-example-project-0.0.1-SNAPSHOT.jar <command>
+## Prerequisites
+
+- **Java JDK 25** (or a configured SDK in IntelliJ / Eclipse)
+- **Maven** (or the included Maven Wrapper `./mvnw`)
+
+---
+
+## Running the Freight Simulation
+
+Compile the project before running:
+
+```bash
+mvn compile
 ```
 
+Two simulation modes are available:
 
+### Mode 1: Solve VRP with jsprit & Simulate (Default)
 
-### Licenses
-(The following paragraphs need to be adjusted according to the specifications of your project.)
+In this mode, only customer orders (services) and fleet capacities are loaded from the JSON. The integrated **jsprit** algorithm solves the routing problem and optimizes vehicle tours. Afterward, MATSim simulates their execution on the road network:
 
-The **MATSim program code** in this repository is distributed under the terms of the [GNU General Public License as published by the Free Software Foundation (version 2)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html). The MATSim program code are files that reside in the `src` directory hierarchy and typically end with `*.java`.
+```bash
+mvn exec:java -Dexec.mainClass="org.matsim.project.RunCVRPFreightSimulation"
+```
 
-The **MATSim input files, output files, analysis data and visualizations** are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /> MATSim input files are those that are used as input to run MATSim. They often, but not always, have a header pointing to matsim.org. They typically reside in the `scenarios` directory hierarchy. MATSim output files, analysis data, and visualizations are files generated by MATSim runs, or by postprocessing.  They typically reside in a directory hierarchy starting with `output`.
+### Mode 2: Simulate Pre-computed Solution from JSON
 
-**Other data files**, in particular in `original-input-data`, have their own individual licenses that need to be individually clarified with the copyright holders.
+In this mode, the reference solution stored in the JSON dataset (`"solution": [[source, dest, active], ...]`) is parsed, converted into complete MATSim tours, routed on the road network, and simulated:
 
+```bash
+mvn exec:java -Dexec.mainClass="org.matsim.project.RunCVRPFreightSimulation" -Dexec.args="--use-solution"
+```
 
+---
+
+## Outputs and Analysis
+
+All results are written to `./output/cvrp/` by default:
+
+| Path / File | Description |
+|---|---|
+| `output_events.xml.zst` | Detailed chronological event history (departures, link entries/exits, arrivals, service starts/ends). |
+| `output_carriers.xml.zst` | Complete executed tour plans for all carriers. |
+| `output_network.xml.zst` | Simulated network in MATSim format. |
+| `analysis/freight/Carriers_KPIs.tsv` | Key performance indicators (number of used vehicles, handled jobs, computation time). |
+| `analysis/freight/Carriers_stats.tsv` | Carrier statistics (planned vs. handled demand, number of tours). |
+| `analysis/freight/TimeDistance_perVehicle.tsv` | Detailed travel times, distances, and costs broken down per vehicle. |
+| `analysis/freight/TimeDistance_perCarrier.tsv` | Total tour durations, travel times, distances, and costs per carrier. |
+| `analysis/freight/Load_perVehicle.tsv` | Vehicle load profiles and maximum capacity utilization along each tour. |
+
+---
+
+## Development in the IDE
+
+### IntelliJ IDEA
+1. Go to `File -> Open` and select the project directory.
+2. IntelliJ detects the project as a Maven project (if not: right-click `pom.xml` -> `Add as Maven Project`).
+3. Under `Project Structure`, make sure the Project SDK is set to **Java 25**.
+4. The class `RunCVRPFreightSimulation.java` can be launched directly with a right-click (`Run 'RunCVRPFreightSimulation.main()'`). To run the pre-computed solution, add `--use-solution` under *Program arguments* in the Run Configuration.
+
+### Eclipse
+1. Go to `File -> Import... -> Maven -> Existing Maven Projects`.
+2. Select the project directory and finish the import.
+3. Ensure the Java 25 Execution Environment is configured and active.
+
+---
+
+## License
+
+- The **MATSim program code** is licensed under the [GNU General Public License v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html).
+- Input and output data files are licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](http://creativecommons.org/licenses/by/4.0/).

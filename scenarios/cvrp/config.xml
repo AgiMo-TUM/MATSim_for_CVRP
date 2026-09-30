@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
+<config>
+
+	<module name="global">
+		<param name="randomSeed" value="4711" />
+		<param name="coordinateSystem" value="Atlantis" />
+	</module>
+
+	<module name="network">
+		<param name="inputNetworkFile" value="network.xml" />
+	</module>
+
+	<module name="controller">
+		<param name="outputDirectory" value="./output/cvrp" />
+		<param name="lastIteration" value="0" />
+	</module>
+
+	<module name="freightCarriers">
+		<param name="carriersFile" value="carriers.xml" />
+		<param name="carriersVehicleTypeFile" value="vehicleTypes.xml" />
+	</module>
+
+</config>
