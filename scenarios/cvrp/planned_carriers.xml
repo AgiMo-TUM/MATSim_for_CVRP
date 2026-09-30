@@ -3,6 +3,7 @@
 <carriers xmlns="http://www.matsim.org/files/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.matsim.org/files/dtd http://www.matsim.org/files/dtd/carriersDefinitions_v2.1.xsd">
 	<carrier id="cvrp_carrier">
 		<attributes>
+			<attribute name="jspritComputationTime" class="java.lang.Double">0.184</attribute>
 			<attribute name="jspritIterations" class="java.lang.Integer">50</attribute>
 		</attributes>
 		<capabilities fleetSize="FINITE">
@@ -53,105 +54,140 @@
 		</services>
 		<plans>
 			<plan selected="true">
-				<tour tourId="tour_0" vehicleId="vehicle_0">
+				<attributes>
+					<attribute name="jspritScore" class="java.lang.Double">-303.36351620648264</attribute>
+				</attributes>
+				<tour tourId="1" vehicleId="vehicle_1">
 					<act type="start" end_time="00:00:00"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:43">
+						<route>svc_0_ret 0_26</route>
 					</leg>
-					<act type="service" serviceId="service_1"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_26"/>
+					<leg expected_dep_time="00:05:43" expected_transp_time="00:00:44">
+						<route>svc_26_ret 26_23</route>
 					</leg>
-					<act type="service" serviceId="service_21"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_23"/>
+					<leg expected_dep_time="00:11:28" expected_transp_time="00:00:14">
+						<route>svc_23_ret 23_29</route>
 					</leg>
-					<act type="service" serviceId="service_3"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_29"/>
+					<leg expected_dep_time="00:16:43" expected_transp_time="00:00:28">
+						<route>svc_29_ret 29_20</route>
 					</leg>
-					<act type="service" serviceId="service_2"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_20"/>
+					<leg expected_dep_time="00:22:11" expected_transp_time="00:00:20">
+						<route>svc_20_ret 20_18</route>
 					</leg>
-					<act type="service" serviceId="service_10"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_18"/>
+					<leg expected_dep_time="00:27:32" expected_transp_time="00:00:13">
+						<route>svc_18_ret 18_27</route>
 					</leg>
-					<act type="service" serviceId="service_22"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_27"/>
+					<leg expected_dep_time="00:32:45" expected_transp_time="00:00:22">
+						<route>svc_27_ret 27_6</route>
 					</leg>
-					<act type="service" serviceId="service_25"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_6"/>
+					<leg expected_dep_time="00:38:08" expected_transp_time="00:00:14">
+						<route>svc_6_ret 6_9</route>
 					</leg>
-					<act type="service" serviceId="service_19"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_9"/>
+					<leg expected_dep_time="00:43:23" expected_transp_time="00:00:24">
+						<route>svc_9_ret 9_15</route>
+					</leg>
+					<act type="service" serviceId="service_15"/>
+					<leg expected_dep_time="00:48:47" expected_transp_time="00:00:16">
+						<route>svc_15_ret 15_7</route>
+					</leg>
+					<act type="service" serviceId="service_7"/>
+					<leg expected_dep_time="00:54:03" expected_transp_time="00:00:35">
+						<route>svc_7_ret 7_5</route>
 					</leg>
 					<act type="service" serviceId="service_5"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:59:38" expected_transp_time="00:00:05">
+						<route>svc_5_ret 5_19</route>
+					</leg>
+					<act type="service" serviceId="service_19"/>
+					<leg expected_dep_time="01:04:44" expected_transp_time="00:00:13">
+						<route>svc_19_ret 19_24</route>
 					</leg>
 					<act type="service" serviceId="service_24"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="01:09:57" expected_transp_time="00:00:21">
+						<route>svc_24_ret 24_25</route>
 					</leg>
-					<act type="service" serviceId="service_16"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_25"/>
+					<leg expected_dep_time="01:15:18" expected_transp_time="00:00:11">
+						<route>svc_25_ret 25_22</route>
 					</leg>
-					<act type="service" serviceId="service_4"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_22"/>
+					<leg expected_dep_time="01:20:30" expected_transp_time="00:00:12">
+						<route>svc_22_ret 22_10</route>
 					</leg>
-					<act type="service" serviceId="service_30"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_10"/>
+					<leg expected_dep_time="01:25:42" expected_transp_time="00:00:18">
+						<route>svc_10_ret 10_2</route>
+					</leg>
+					<act type="service" serviceId="service_2"/>
+					<leg expected_dep_time="01:31:00" expected_transp_time="00:00:13">
+						<route>svc_2_ret 2_3</route>
+					</leg>
+					<act type="service" serviceId="service_3"/>
+					<leg expected_dep_time="01:36:14" expected_transp_time="00:00:24">
+						<route>svc_3_ret 3_21</route>
+					</leg>
+					<act type="service" serviceId="service_21"/>
+					<leg expected_dep_time="01:41:39" expected_transp_time="00:01:04">
+						<route>svc_21_ret 21_0</route>
 					</leg>
 					<act type="end"/>
 				</tour>
-				<tour tourId="tour_1" vehicleId="vehicle_1">
+				<tour tourId="2" vehicleId="vehicle_2">
 					<act type="start" end_time="00:00:00"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:37">
+						<route>svc_0_ret 0_14</route>
 					</leg>
 					<act type="service" serviceId="service_14"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:05:37" expected_transp_time="00:00:19">
+						<route>svc_14_ret 14_11</route>
 					</leg>
 					<act type="service" serviceId="service_11"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:10:56" expected_transp_time="00:00:23">
+						<route>svc_11_ret 11_12</route>
 					</leg>
 					<act type="service" serviceId="service_12"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:16:20" expected_transp_time="00:00:03">
+						<route>svc_12_ret 12_17</route>
 					</leg>
 					<act type="service" serviceId="service_17"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:21:23" expected_transp_time="00:00:12">
+						<route>svc_17_ret 17_13</route>
 					</leg>
 					<act type="service" serviceId="service_13"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:26:36" expected_transp_time="00:00:05">
+						<route>svc_13_ret 13_28</route>
 					</leg>
 					<act type="service" serviceId="service_28"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:31:41" expected_transp_time="00:00:23">
+						<route>svc_28_ret 28_8</route>
 					</leg>
 					<act type="service" serviceId="service_8"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<leg expected_dep_time="00:37:04" expected_transp_time="00:00:58">
+						<route>svc_8_ret 8_16</route>
 					</leg>
-					<act type="service" serviceId="service_29"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_16"/>
+					<leg expected_dep_time="00:43:03" expected_transp_time="00:00:06">
+						<route>svc_16_ret 16_4</route>
 					</leg>
-					<act type="service" serviceId="service_20"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_4"/>
+					<leg expected_dep_time="00:48:09" expected_transp_time="00:00:38">
+						<route>svc_4_ret 4_30</route>
 					</leg>
-					<act type="service" serviceId="service_18"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_30"/>
+					<leg expected_dep_time="00:53:48" expected_transp_time="00:00:21">
+						<route>svc_30_ret 30_1</route>
 					</leg>
-					<act type="service" serviceId="service_27"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
-					</leg>
-					<act type="service" serviceId="service_15"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
-					</leg>
-					<act type="service" serviceId="service_7"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
-					</leg>
-					<act type="service" serviceId="service_9"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
-					</leg>
-					<act type="service" serviceId="service_6"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
-					</leg>
-					<act type="service" serviceId="service_23"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
-					</leg>
-					<act type="service" serviceId="service_26"/>
-					<leg expected_dep_time="00:00:00" expected_transp_time="00:00:00">
+					<act type="service" serviceId="service_1"/>
+					<leg expected_dep_time="00:59:10" expected_transp_time="00:00:15">
+						<route>svc_1_ret 1_0</route>
 					</leg>
 					<act type="end"/>
 				</tour>

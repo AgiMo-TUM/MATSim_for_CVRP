@@ -32,6 +32,7 @@ public class CVRPCarrierGenerator {
      */
     public static Carrier createCarrier(CVRP cvrp, VehicleType vehicleType) {
         Carrier carrier = CarriersUtils.createCarrier(Id.create(CARRIER_ID, Carrier.class));
+        CarriersUtils.setJspritIterations(carrier, 50); // number of VRP optimization iterations
 
         // Create a service for each customer node (demand > 0)
         for (CVRPNode node : cvrp.getNodes()) {

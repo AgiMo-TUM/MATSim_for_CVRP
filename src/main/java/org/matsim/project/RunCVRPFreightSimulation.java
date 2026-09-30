@@ -103,7 +103,7 @@ public class RunCVRPFreightSimulation {
         // ===== 8. Load carriers from generated files =====
         CarriersUtils.loadCarriersAccordingToFreightConfig(scenario);
 
-        // ===== 9. Solve VRP or use pre-planned solution =====
+        // ===== 9. Solve VRP or route pre-planned solution =====
         if (!usePrePlannedSolution) {
             System.out.println("\n=== Running jsprit VRP solver ===");
             CarriersUtils.runJsprit(scenario);
@@ -112,6 +112,16 @@ public class RunCVRPFreightSimulation {
             // Write solved plans for inspection
             new CarrierPlanWriter(CarriersUtils.getCarriers(scenario))
                     .write(SCENARIO_DIR + "planned_carriers.xml");
+        } else {
+            System.out.println("\n=== Routing pre-planned tours on network ===");
+            java.util.Collection<org.matsim.vehicles.VehicleType> types =
+                    CarriersUtils.getCarrierVehicleTypes(scenario).getVehicleTypes().values();
+            org.matsim.freight.carriers.jsprit.NetworkBasedTransportCosts netCosts =
+                    org.matsim.freight.carriers.jsprit.NetworkBasedTransportCosts.Builder
+                            .newInstance(scenario.getNetwork(), types).build();
+            for (Carrier c : CarriersUtils.getCarriers(scenario).getCarriers().values()) {
+                org.matsim.freight.carriers.jsprit.NetworkRouter.routePlan(c.getSelectedPlan(), netCosts);
+            }
         }
 
         // ===== 10. Run MATSim simulation =====
