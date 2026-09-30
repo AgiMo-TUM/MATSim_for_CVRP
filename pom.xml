@@ -21,7 +21,7 @@
 
 		<!-- Don't change version here, but in the parent section above! -->
 		<matsim.version>${parent.version}</matsim.version>
-        <main.class>org.matsim.project.RunMatsimModelImplementation</main.class>
+        <main.class>org.matsim.project.RunCVRPFreightSimulation</main.class>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -223,6 +223,15 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.11.0</version>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.48</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
